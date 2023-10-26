@@ -1,5 +1,5 @@
-@import "../../Mixins";
-@import "../../Themes";
+@import "../../mixins";
+@import "../../themes";
 
 
 @mixin buttonType($main-color, $radius: 12px, $border-width: 0, $border-color, $outline: false) {
