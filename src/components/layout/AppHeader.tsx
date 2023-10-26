@@ -18,7 +18,7 @@ function ProfileMenu({ isVisible, setIsVisible }: { isVisible: boolean, setIsVis
     if (clickOusideMenu) {
       setIsVisible(false)
     }
-  }, [isVisible, clickOusideMenu])
+  }, [isVisible, clickOusideMenu, setIsVisible])
 
   const logout = () => {
     store.dispatch(logoutAction({ exit: true }))

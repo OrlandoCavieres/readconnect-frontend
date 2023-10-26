@@ -15,7 +15,7 @@ export default function CheckAuth() {
     if (!token && location.includes('/app')) {
       router.push('/')
     }
-  }, [token]);
+  }, [token, location, router]);
 
   return <></>
 }

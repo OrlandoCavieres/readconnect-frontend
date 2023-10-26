@@ -15,7 +15,7 @@ export default function ListViewer({ queryRef, refreshQuery, title }: ListViewer
 
   useEffect(() => {
     refreshQuery(startPosition)
-  }, [startPosition]);
+  }, [startPosition, refreshQuery]);
 
 
   if (!!queryRef) {

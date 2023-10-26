@@ -17,7 +17,7 @@ export default function BookReviewsView({ queryRef }: BookReviewViewerProps) {
 
     const createCommentCards = () => {
       return renderData?.map(comment => {
-        return <CommentCard info={comment} />
+        return <CommentCard key={`CommentCard-${comment.user?.id}-${comment.lastUpdateFormat}`} info={comment} />
       })
     }
 

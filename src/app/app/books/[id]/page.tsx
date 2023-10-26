@@ -12,7 +12,7 @@ export default function BookViewWrapper({ params }: { params: { id: string } }) 
   useEffect(() => {
     const id_correct = params.id.replaceAll('%3D', '=')
     loadBook({ objectId: id_correct }, { fetchPolicy: 'store-and-network' })
-  }, [params.id]);
+  }, [params.id, loadBook]);
 
   if (!!bookQueryRef) {
     return (

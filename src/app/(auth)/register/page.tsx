@@ -89,7 +89,7 @@ export default function Register() {
             {responseErrorMessage}
             { errors.map(error => {
               return (
-                <div>
+                <div key={error.field}>
                   * {error.field} : {error.errors}
                 </div>
               )

@@ -25,7 +25,10 @@ async function fetchRelay(params: RequestParameters, variables: Variables, cache
   return response
 }
 
-export default new Environment({
+
+const env = new Environment({
   network: Network.create(fetchRelay),
   store: new Store(new RecordSource()),
 })
+
+export default env

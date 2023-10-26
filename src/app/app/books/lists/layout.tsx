@@ -15,7 +15,7 @@ export default function UserListLayout({ children }: { children: ReactNode }) {
     loadWishedListQuery(
       { elements: 12, startPosition, userList: "WISHED" },
       { fetchPolicy: 'store-and-network' }
-    )}, [],
+    )}, [loadWishedListQuery],
   )
 
   const refreshFinishedList = useCallback((startPosition: number) => {
@@ -24,7 +24,7 @@ export default function UserListLayout({ children }: { children: ReactNode }) {
       { fetchPolicy: 'store-and-network' }
       )
     },
-    [],
+    [loadFinishedListQuery],
   )
 
   return (

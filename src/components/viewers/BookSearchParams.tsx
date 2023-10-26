@@ -70,7 +70,7 @@ export default function BookSearchParams() {
 
   useEffect(() => {
     loadBookFilters({})
-  }, [])
+  }, [loadBookFilters])
 
   const orderOptions = [
     { value: 'title', label: 'Título' },

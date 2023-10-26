@@ -24,7 +24,7 @@ export default function BookReviewWrapper() {
   useEffect(() => {
     const id_correct = params.id.toString().replaceAll('%3D', '=')
     loadBookReviews({ bookId: id_correct }, { fetchPolicy: 'store-and-network' })
-  }, [params.id, loadingReview, commitReview, rating, bodyComment])
+  }, [params.id, loadingReview, commitReview, rating, bodyComment, loadBookReviews])
 
   const sendReview = () => {
     const bookId = params.id.toString().replaceAll('%3D', '=')

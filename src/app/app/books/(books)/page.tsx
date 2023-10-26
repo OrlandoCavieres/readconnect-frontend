@@ -67,7 +67,7 @@ export default function BookList() {
       { fetchPolicy: 'store-and-network'})
   }, [
     context?.startPosition, context?.orderBy?.value, context?.descendantOrder, context?.category?.value, context?.author?.value,
-    context?.minPageCount, context?.maxPageCount, context?.minPublishedDate, context?.maxPublishedDate
+    context?.minPageCount, context?.maxPageCount, context?.minPublishedDate, context?.maxPublishedDate, loadBooks
   ])
 
   if (!!booksQuery) {

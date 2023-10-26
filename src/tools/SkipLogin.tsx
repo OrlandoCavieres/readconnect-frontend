@@ -10,13 +10,14 @@ export default function SkipLogin() {
   const token = useSelector((state: RootState) => state.user.token)
   const router = useRouter()
   const location = usePathname()
-  const autoLocations = ['/', '/login', '/register']
 
   useEffect(() => {
+    const autoLocations = ['/', '/login', '/register']
+
     if (token && autoLocations.includes(location)) {
       router.push('/app')
     }
-  }, [token]);
+  }, [token, location, router]);
 
   return <></>
 }
