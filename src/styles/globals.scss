@@ -1,0 +1,61 @@
+@import 'texts';
+@import 'mixins';
+@import 'themes';
+@import 'components/styles';
+@import 'views/styles';
+
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+html, body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  min-height: 0;
+}
+
+body {
+  @include give-theme() {
+    color: get-theme-key('text');
+    background-color: get-theme-key('backgroundFirstLayer');
+  }
+}
+
+.mainContainer {
+  @include flex($dir: column);
+  max-height: 100vh;
+  min-height: 100vh;
+
+  @include give-theme() {
+    background-color: get-theme-key('backgroundThirdLayer');
+  }
+}
+
+.flexAlignRight {
+  align-self: flex-end;
+}
+
+.separator {
+  width: 100%;
+  height: 2px;
+
+  @include give-theme() {
+    background-color: get-theme-key('backgroundSecondLayer');
+  }
+}
+
+.authLayoutContainer {
+  @include flex($dir: column);
+  flex: 1;
+
+  position: relative;
+  overflow-y: auto;
+}

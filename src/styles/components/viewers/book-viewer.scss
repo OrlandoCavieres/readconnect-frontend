@@ -1,0 +1,105 @@
+@import '../../mixins';
+@import '../../themes';
+
+
+.bookViewer {
+  @include flex($dir: column);
+  padding: 25px;
+  gap: 15px;
+}
+
+.bookViewer_title {
+  @extend .h2_b_secondary;
+}
+
+.bookViewer_authors {
+  @extend .h4_b_primaryAlternative;
+}
+
+.bookViewer_info {
+  @include flex();
+
+  gap: 15px;
+  padding: 10px;
+
+  border-radius: 10px;
+
+  @include give-theme() {
+    background-color: get-theme-key('backgroundFourthLayer');
+    box-shadow: 0 1px 4px 0 rgba(get-theme-key('text'), 0.3);
+  }
+
+  @media (max-width: 750px) {
+    @include flex($dir: column);
+
+    > .bookViewer_info_imageDisplay {
+      align-self: center;
+      max-width: 160px;
+    }
+  }
+}
+
+.bookViewer_info_leftSide {
+  @include flex($align: center, $dir: column);
+  gap: 5px;
+}
+
+.bookViewer_info_imageDisplay {
+  position: relative;
+  height: 250px;
+  min-width: 160px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.bookViewer_info_ratingContainer {
+  @include flex($align: center);
+  gap: 3px;
+
+  > .counterReviews {
+    @extend .p1_l_textDecorate;
+  }
+
+  > .iconStar {
+    font-size: 22px;
+
+    @include give-theme() {
+      color: get-theme-key('primary')
+    }
+  }
+}
+
+.bookViewer_info_field {
+  @include flex($dir: column);
+  gap: 10px;
+
+  > .fieldTitle {
+    @extend .h5_b_secondary;
+  }
+
+  > .fieldTextData {
+    @extend .h6_r_text;
+  }
+}
+
+.bookViewer_header {
+  @include flex($dir: column);
+  gap: 5px;
+  padding-left: 10px;
+}
+
+.bookViewer_header_categoriesContainer {
+  @include flex();
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.bookViewer_header_categoryTag {
+  padding: 5px 10px;
+  border-radius: 5px;
+
+  @include give-theme() {
+    background-color: get-theme-key('secondary');
+    color: get-theme-key('textAlternative')
+  }
+}

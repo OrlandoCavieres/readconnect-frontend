@@ -1,0 +1,137 @@
+@import '../../mixins';
+@import '../../themes';
+
+
+.bookCard_container {
+  @include flex();
+  @include setLayer(firstLayer);
+
+  height: 220px;
+  width: 140px;
+  position: relative;
+
+  border-radius: 5px;
+  overflow: clip;
+
+  cursor: pointer;
+  transition: 0.3s;
+
+  @include give-theme() {
+    background-color: get-theme-key('backgroundSecondLayer');
+    box-shadow: 0 1px 4px 0 rgba(get-theme-key('text'), 0.5);
+
+    &:hover {
+      width: 400px;
+      @include setLayer(secondLayer);
+
+      outline: 2px solid get-theme-key('secondary');
+      box-shadow: 0 2px 8px 0 rgba(get-theme-key('text'), 0.7);
+
+      .bookCard_infoViewer {
+        @include flex($justify: space-between, $dir: column);
+        @include setLayer(thirdLayer);
+        flex-grow: 1;
+        opacity: 1;
+      }
+
+      .bookCard_buttonContainer {
+        @include flexCenter($direction: column);
+        @include setLayer(onFront);
+
+        &:hover {
+          align-items: flex-start;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 550px) {
+    width: 400px;
+
+    .bookCard_infoViewer {
+      @include flex($justify: space-between, $dir: column);
+      opacity: 1;
+      flex: 1;
+    }
+  }
+}
+
+.bookCard_imageViewer {
+  height: 100%;
+  min-width: 140px;
+  position: relative;
+}
+
+.bookCard_infoViewer {
+  display: none;
+  opacity: 0;
+  position: relative;
+  padding: 5px;
+  overflow-y: scroll;
+  gap: 10px;
+}
+
+.bookCategoryTag {
+  padding: 2px 4px;
+  border-radius: 5px;
+
+  @include give-theme() {
+    background-color: get-theme-key('secondary');
+  }
+}
+
+.bookCard_buttonContainer {
+  @include absolutePos(TopLeft, 5px, 5px);
+  @include box();
+
+  display: none;
+  border-radius: 50%;
+  transition: 0.3s;
+
+  @include give-theme() {
+    border: 2px solid get-theme-key('terciary');
+    background-color: get-theme-key('primary');
+
+    &:hover {
+      border-radius: 5px;
+      width: auto;
+      height: auto;
+      background-color: get-theme-key('backgroundThirdLayer');
+      padding: 5px;
+
+      .bookCardButton_plusIcon {
+        display: none;
+      }
+
+      .bookCardButton_checksButton {
+        @include flex($align: center);
+        gap: 3px;
+      }
+    }
+  }
+}
+
+.bookCardButton_plusIcon {
+  @include give-theme() {
+    color: get-theme-key('terciary');
+  }
+}
+
+.bookCardButton_checksButton {
+  @extend .h6_r_text;
+  display: none;
+}
+
+.bookCardButton_checkCircleIcon {
+  font-size: 18px;
+  @include give-theme() {
+    color: get-theme-key('success');
+  }
+}
+
+.bookCardButton_emptyCircleIcon {
+  font-size: 18px;
+  @include give-theme() {
+    color: get-theme-key('secondary');
+  }
+}

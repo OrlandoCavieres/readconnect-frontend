@@ -1,0 +1,8 @@
+schema: schema/schema.graphql
+extensions:
+  endpoints:
+    Default:
+      url: http://localhost:8000/api/graphql
+      headers:
+        user-agent: TS GraphQL
+      introspect: true

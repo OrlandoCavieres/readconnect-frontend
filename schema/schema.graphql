@@ -1,0 +1,280 @@
+# This file was generated. Do not edit manually.
+
+schema {
+    query: AllQueries
+    mutation: AllMutations
+}
+
+"An object with a Globally Unique ID"
+interface Node {
+    "The Globally Unique ID of this object"
+    id: GlobalID!
+}
+
+union BookListActionResponse = Error | NoChanges | Success
+
+union BookQueryResponse = BookObjectResult | Empty | Error
+
+union BookReviewMutationResponse = Error | Success
+
+union BookReviewQueryResponse = BookReviewObjectResult | Empty | Error
+
+union CardSection = AbsoluteContainer | BackgroundImage | Container | Description | Title
+
+union EditProfileResponse = Error | Success
+
+union InnerElement = BookCategoryTag | Description | Title
+
+union LoginResponse = AuthSuccess | Error
+
+type AbsoluteContainer {
+    bottom: Int!
+    direction: String!
+    elements: [InnerElement!]!
+    gap: Int!
+    left: Int!
+    right: Int!
+    top: Int!
+}
+
+type AllMutations {
+    booksReviews(action: ApiMutationAction!, form: BookReviewForm, objectId: GlobalID): BookReviewMutationResponse!
+    editProfile(form: UserForm!): EditProfileResponse!
+    login(form: LoginForm!): LoginResponse!
+    register(form: RegisterForm!): LoginResponse!
+    userBookList(action: ApiRelatedAction!, bookId: GlobalID!, listTarget: UserBookList!): BookListActionResponse!
+}
+
+type AllQueries {
+    bookFiltersValues: BookFilterValuesResponse!
+    books(action: ApiQueryAction = LIST, filters: BookFilter, objectId: GlobalID, orderBy: String, pagination: PaginationParam, userList: UserBookList): BookQueryResponse!
+    booksReviewsList(bookId: GlobalID, pagination: PaginationParam): BookReviewQueryResponse!
+    hola: String!
+    profile: UserObject!
+    prohibido: String!
+}
+
+type AuthSuccess {
+    expires: DateTime!
+    fieldsChangedNames: [String!]
+    fieldsNumber: Int
+    message: String
+    processName: String
+    token: String!
+    user: UserObject!
+}
+
+type AuthorObject implements Node {
+    "The Globally Unique ID of this object"
+    id: GlobalID!
+    name: String!
+}
+
+type BackgroundImage {
+    altText: String
+    url: String!
+}
+
+type BookCategoryObject implements Node {
+    "The Globally Unique ID of this object"
+    id: GlobalID!
+    name: String!
+}
+
+type BookCategoryTag {
+    name: String!
+}
+
+type BookFilterValuesResponse {
+    authors: [AuthorObject!]!
+    categories: [BookCategoryObject!]!
+}
+
+type BookObject implements Node {
+    authors: [AuthorObject!]!
+    categories: [BookCategoryObject!]!
+    "The Globally Unique ID of this object"
+    id: GlobalID!
+    inFinishedList: Boolean!
+    inWishList: Boolean!
+    isbn: String!
+    longDescription: String!
+    pageCount: Int!
+    publishedDate: DateTime
+    publishedDateFormat: String!
+    rating: Float!
+    reviews: [BookReviewObject!]!
+    reviewsNumber: Int!
+    shortDescription: String!
+    status: String!
+    thumbnail: String!
+    title: String!
+}
+
+type BookObjectResult {
+    cards: [Card!]
+    list: [BookObject!]
+    message: String
+    pagination: Pagination
+    single: BookObject
+    usingFilters: Boolean
+}
+
+type BookReviewObject implements Node {
+    body: String!
+    book: BookObject
+    fromLoggedUser: Boolean!
+    "The Globally Unique ID of this object"
+    id: GlobalID!
+    lastUpdate: DateTime!
+    lastUpdateFormat: String!
+    rating: Int!
+    user: UserObject
+}
+
+type BookReviewObjectResult {
+    cards: [Card!]
+    list: [BookReviewObject!]
+    message: String
+    pagination: Pagination
+    single: BookReviewObject
+    usingFilters: Boolean
+}
+
+type Card {
+    id: Base64!
+    inFinishedList: Boolean!
+    inWishList: Boolean!
+    sections: [CardSection!]!
+}
+
+type Container {
+    align: String!
+    direction: String!
+    elements: [InnerElement!]!
+    gap: Int!
+    justify: String!
+}
+
+type Description {
+    color: String!
+    size: String!
+    text: String!
+    weight: String!
+}
+
+type Empty {
+    message: String
+}
+
+type Error {
+    fields: [FieldErrors!]
+    message: String
+}
+
+type FieldErrors {
+    errors: [String!]!
+    field: String!
+}
+
+type NoChanges {
+    message: String
+}
+
+type Pagination {
+    actualPage: Int!
+    consultedElements: Int!
+    first: Int!
+    last: Int!
+    pageSize: Int!
+    pages: Int!
+    totalElements: Int!
+}
+
+type Success {
+    fieldsChangedNames: [String!]
+    fieldsNumber: Int
+    message: String
+    processName: String
+}
+
+type Title {
+    color: String!
+    size: String!
+    text: String!
+    weight: String!
+}
+
+type UserObject implements Node {
+    email: String!
+    "The Globally Unique ID of this object"
+    id: GlobalID!
+    name: String
+}
+
+enum ApiMutationAction {
+    CREATE
+    DELETE
+    UPDATE
+}
+
+enum ApiQueryAction {
+    CARD_LIST
+    LIST
+    VIEW
+}
+
+enum ApiRelatedAction {
+    ADD
+    REMOVE
+}
+
+enum UserBookList {
+    FINISHED
+    WISHED
+}
+
+"Represents binary data as Base64-encoded strings, using the standard alphabet."
+scalar Base64
+
+"Date with time (isoformat)"
+scalar DateTime
+
+"The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `\"4\"`) or integer (such as `4`) input value will be accepted as an ID."
+scalar GlobalID
+
+input BookFilter {
+    author: GlobalID
+    category: GlobalID
+    maxPagesNumber: Int
+    maxPublishedDate: String
+    minPagesNumber: Int
+    minPublishedDate: String
+    text: String
+}
+
+input BookReviewForm {
+    body: String
+    book: GlobalID
+    rating: Int
+}
+
+input LoginForm {
+    email: String
+    password: String
+}
+
+input PaginationParam {
+    elements: Int = 50
+    startPosition: Int = 0
+}
+
+input RegisterForm {
+    email: String
+    name: String
+    password: String
+}
+
+input UserForm {
+    name: String
+}

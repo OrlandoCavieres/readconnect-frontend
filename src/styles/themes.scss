@@ -1,0 +1,46 @@
+$light-theme: (
+  "backgroundZeroLayer": #9b7d65,
+  "backgroundFirstLayer": #d5c4b5,
+  "backgroundSecondLayer": #dfd6cc,
+  "backgroundThirdLayer": #f4eee9,
+  "backgroundFourthLayer": #fdfaf5,
+
+  "primary": #ffa506,
+  "secondary": #654b6b,
+  "terciary": #131522,
+  "primaryAlternative": #996202,
+  "secondaryAlternative": #b6acba,
+  "terciaryAlternative": #6f7499,
+
+  "text": #1C1E25,
+  "textDecorate": #865621,
+
+  "textAlternative": #E9EEF6,
+  "textAlternativeDecorate": #A9B5CA,
+
+  "danger": #8d3626,
+  "success": #81b26c
+);
+
+$themes: (
+  "light": $light-theme,
+);
+
+@mixin give-theme($themes: $themes) {
+  @each $theme, $map in $themes {
+    .theme-#{$theme} & {
+      $theme-map: () !global;
+      @each $key, $submap in $map {
+        $value: map-get(map-get($themes, $theme), '#{$key}');
+        $theme-map: map-merge($theme-map, ($key: $value)) !global;
+      }
+
+      @content;
+      $theme-map: null !global;
+    }
+  }
+}
+
+@function get-theme-key($key) {
+  @return map-get($theme-map, $key)
+}

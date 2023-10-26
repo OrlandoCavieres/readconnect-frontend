@@ -1,0 +1,8 @@
+@import 'themes';
+
+
+:export {
+  @each $key, $color in $light-theme {
+    lightTheme_#{$key}: $color
+  }
+}

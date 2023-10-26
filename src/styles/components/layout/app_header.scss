@@ -1,0 +1,67 @@
+@import '../../mixins';
+@import '../../themes';
+
+
+.appHeader_container {
+  @include flex($align: center, $justify: space-between);
+
+  padding: 10px 25px;
+  min-height: 60px;
+
+  @include give-theme() {
+    background-color: get-theme-key('backgroundSecondLayer');
+  }
+}
+
+.appHeader_leftSide_container {
+  @extend .h4_r_text;
+  @include flex($align: center);
+
+  gap: 40px;
+}
+
+.appHeader_rightSide_container {
+  @extend .h4_r_text;
+  @include flex($align: center);
+
+  gap: 20px;
+}
+
+.appHeader_iconButton {
+  @include flexCenter();
+
+  width: 40px;
+  height: 40px;
+
+  border-radius: 50%;
+  cursor: pointer;
+
+  position: relative;
+  transition: 0.3s;
+
+  @include give-theme() {
+    background-color: get-theme-key('backgroundZeroLayer');
+    box-shadow: 0 1px 2px 0 get-theme-key('text');
+
+    &:hover {
+      background-color: get-theme-key('backgroundFirstLayer');
+    }
+  }
+}
+
+.appHeader_profileDropdownContainer {
+  @extend .h5_r_text;
+  @include flex($dir: column);
+  @include absolutePos(TopRight, 45px, 0);
+  @include setLayer(onFront);
+
+  gap: 10px;
+  border-radius: 10px;
+  padding: 15px;
+  width: 150px;
+
+  @include give-theme() {
+    background-color: get-theme-key('backgroundFirstLayer');
+    box-shadow: 0 1px 3px 0 rgba(get-theme-key('text'), 0.3);
+  }
+}

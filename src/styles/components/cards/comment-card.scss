@@ -1,0 +1,48 @@
+@import '../../mixins';
+@import '../../themes';
+
+
+.commentCard_main {
+  @include flex($dir: column);
+
+  padding: 5px;
+  gap: 10px;
+  border-radius: 5px;
+
+  @include give-theme() {
+    background-color: get-theme-key('backgroundFirstLayer');
+  }
+}
+
+.commentCard_body {
+  @extend .h6_r_text;
+  padding: 5px 10px;
+  border-radius: 5px;
+
+  @include give-theme() {
+    background-color: get-theme-key('backgroundThirdLayer');
+  }
+}
+
+.commentCard_bottom {
+  @include flex($justify: space-between);
+}
+
+.commentCard_bottom_rating {
+  @include flex($align: center);
+  gap: 5px;
+}
+
+.commentCard_textarea {
+  border-radius: 5px;
+  width: 100%;
+  min-height: 100px;
+
+  @include give-theme() {
+    border: 2px solid get-theme-key('secondary');
+
+    &:focus {
+      outline: 2px solid get-theme-key('secondary');
+    }
+  }
+}

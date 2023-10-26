@@ -1,0 +1,53 @@
+@import '../../mixins';
+@import '../../themes';
+
+
+.bookSearchParams {
+  @include flex($dir: column);
+  @include setLayer(onBack);
+
+  width: 250px;
+  margin-top: 15px;
+  padding: 15px 15px 80px;
+  gap: 15px;
+  position: relative;
+
+  border-radius: 10px;
+
+  @include give-theme() {
+    background-color: get-theme-key('backgroundFirstLayer');
+  }
+}
+
+.bookSearchParams_filterField {
+  @include flex($dir: column);
+  gap: 8px;
+}
+
+.bookSearchParams_orderContainer {
+  @include flex($align: center);
+  gap: 5px;
+
+  > .sortIcon {
+    font-size: 25px;
+    cursor: pointer;
+
+    @include give-theme() {
+      color: get-theme-key('terciaryAlternative');
+    }
+  }
+
+  > .sortIcon_active {
+    font-size: 25px;
+    cursor: pointer;
+
+    @include give-theme() {
+      color: get-theme-key('secondary');
+    }
+  }
+}
+
+.bookSearchParams_filterDoubleInput {
+  @include flex();
+  gap: 15px;
+}

@@ -1,0 +1,40 @@
+@import "../../Mixins";
+@import "../../Themes";
+
+
+@mixin buttonType($main-color, $radius: 12px, $border-width: 0, $border-color, $outline: false) {
+  width: 80%;
+  min-height: 34px;
+  max-height: 60px;
+  padding: 15px 25px;
+  cursor: pointer;
+
+  @include give-theme() {
+    border: $border-width solid get-theme-key($border-color);
+    border-radius: $radius;
+    box-shadow: 0 2px 10px 0 rgba(get-theme-key('text'), 0.3);
+
+    @if $outline {
+      background-color: transparent;
+      border-width: 2px;
+    }
+
+    @else {
+      background-color: get-theme-key($main-color);
+    }
+
+    &:hover {
+      @if $outline {
+        background-color: rgba(get-theme-key($main-color), 0.2);
+      }
+      @else {
+        background-color: rgba(get-theme-key($main-color), 0.8);
+      }
+    }
+  }
+}
+
+.Button_primary_filled {
+  @extend .h4_b_textAlternative;
+  @include buttonType($main-color: 'terciary', $border-color: 'primary');
+}

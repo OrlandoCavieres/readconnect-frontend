@@ -1,0 +1,51 @@
+@import '../mixins';
+@import '../themes';
+
+
+.login {
+  @include flexCenter();
+  flex: 1;
+
+  @include give-theme() {
+    background-color: get-theme-key('terciaryAlternative');
+  }
+}
+
+.login_card {
+  @include flex($dir: column);
+
+  gap: 30px;
+  border-radius: 10px;
+  width: 360px;
+  padding: 20px 20px 60px;
+
+  position: relative;
+
+  @include give-theme() {
+    background-color: get-theme-key('backgroundZeroLayer');
+    box-shadow: 1px 1px 5px 0 rgba(get-theme-key('text'), 0.5);
+  }
+}
+
+.login_card_inputContainer {
+  @include flex($dir: column);
+  gap: 15px;
+  width: 100%;
+  position: relative;
+}
+
+.login_card_messages {
+  @extend .h5_b_danger;
+
+  padding: 10px;
+  border-radius: 5px;
+
+  @include give-theme() {
+    background-color: get-theme-key('backgroundThirdLayer');
+  }
+}
+
+.login_card_buttonContainer {
+  @include flexCenter($direction: column);
+  padding: 20px;
+}

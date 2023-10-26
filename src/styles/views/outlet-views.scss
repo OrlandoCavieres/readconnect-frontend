@@ -1,0 +1,66 @@
+@import '../mixins';
+@import '../themes';
+
+
+.outletViewMain {
+  @include flex();
+  max-height: calc(100vh - 60px);
+  position: relative;
+
+  @media (max-width: 750px) {
+    display: grid;
+
+    > .bookSearchParams {
+      order: 1;
+      margin: 15px;
+      width: auto
+    }
+
+    > .bookListOutletViewSide {
+      order: 2;
+
+      > .listCardContainer {
+        padding-right: 200px;
+      }
+    }
+  }
+
+  @media (max-width: 450px) {
+    > .bookSearchParams {
+      margin: 15px 5px;
+    }
+
+    > .bookListOutletViewSide {
+      padding: 5px;
+    }
+
+    .listCardContainer {
+      padding: 10px;
+    }
+  }
+}
+
+.bookListOutletViewSide {
+  @include setLayer(onFront);
+  flex: 1;
+  position: relative;
+  padding: 15px;
+}
+
+.bookOutletViewSide {
+  flex: 2;
+  overflow-y: auto;
+}
+
+.bookCommentOutletViewSide {
+  flex: 1;
+  position: relative;
+
+  @media (min-width: 750px) {
+    overflow-y: auto;
+  }
+}
+
+.userListsBooksOutletViewSide {
+  flex: 1
+}

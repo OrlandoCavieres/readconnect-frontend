@@ -1,0 +1,34 @@
+@import '../../mixins';
+@import '../../themes';
+
+
+.paginator_main {
+  @include flex($align: center);
+  gap: 5px;
+
+  > .icon {
+    cursor: pointer;
+
+    @include give-theme() {
+      color: get-theme-key('secondary');
+    }
+  }
+
+  > .pageButton {
+    cursor: pointer;
+    user-select: none;
+  }
+
+  > .pageButton_active {
+    @include flexCenter();
+    @include box(24px);
+
+    border-radius: 50%;
+    user-select: none;
+
+    @include give-theme() {
+      background-color: get-theme-key('secondary');
+      color: get-theme-key('textAlternative');
+    }
+  }
+}

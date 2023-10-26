@@ -1,0 +1,56 @@
+@import '../../mixins';
+@import '../../themes';
+
+
+.inputField_container {
+  @extend .h5_r_text;
+  @include flex($dir: column, $align: flex-start);
+
+  gap: 8px;
+  width: 100%;
+
+  &__title {
+    @extend .h5_b_textAlternative;
+  }
+}
+
+@mixin inputFieldContainer($focus-enabled: true) {
+  @extend .h5_r_text;
+  height: calc(25px + 1vmin);
+
+  width: 100%;
+  border-radius: 10px;
+  outline: transparent none;
+  padding: 0 10px;
+  transition: outline-color 0.40s ease-in-out;
+
+  @include give-theme() {
+    background-color: get-theme-key('fieldBackground');
+    border: 1px solid get-theme-key('fieldBackground');
+    color: get-theme-key('text') !important;
+
+    @if $focus-enabled {
+      &:focus {
+        outline: 1px solid get-theme-key('secondary');
+        transition: outline-color 0.40s ease-in-out;
+      }
+    }
+  }
+}
+
+
+.inputField_container_input {
+  @include inputFieldContainer();
+
+  &__nofocus {
+    @include inputFieldContainer($focus-enabled: false);
+  }
+
+  &__error {
+    @include inputFieldContainer();
+
+    @include give-theme() {
+      border-color: get-theme-key('danger');
+    }
+  }
+}

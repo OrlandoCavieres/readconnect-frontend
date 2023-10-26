@@ -1,0 +1,46 @@
+@import '../mixins';
+@import '../themes';
+
+
+.profileContainer {
+  @include flex($dir: column);
+  padding: 25px;
+  gap: 15px;
+}
+
+.profileCard {
+  @include flex($dir: column);
+
+  gap: 15px;
+  padding: 20px;
+
+  border-radius: 10px;
+
+  @include give-theme() {
+    background-color: get-theme-key('backgroundFourthLayer');
+  }
+}
+
+.profileCard_field {
+  @include flex($align: center);
+  gap: 10px;
+}
+
+.profileCard_field_name {
+  @extend .h5_b_secondary;
+  width: 100px;
+}
+
+.profileCard_buttonIcon {
+  font-size: 22px;
+  cursor: pointer;
+  transition: 0.2s;
+
+  @include give-theme() {
+    color: get-theme-key('secondary');
+
+    &:hover {
+      color: get-theme-key('secondaryAlternative')
+    }
+  }
+}
