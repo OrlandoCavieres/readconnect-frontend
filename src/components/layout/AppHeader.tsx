@@ -1,12 +1,14 @@
 'use client'
 
 import Link from 'next/link'
+import Logo from '%/Logo.png'
 import { MdPerson } from 'react-icons/md'
 import useClickOutsideComponent from '@/hooks/useClickOutsideComponent'
 import { useEffect, useRef, useState } from 'react'
-import { useRouter } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import store from '@/store'
 import { logoutAction } from '@/store/slices/UserInformation'
+import Image from 'next/image'
 
 
 function ProfileMenu({ isVisible, setIsVisible }: { isVisible: boolean, setIsVisible: any }) {
@@ -43,19 +45,25 @@ function ProfileMenu({ isVisible, setIsVisible }: { isVisible: boolean, setIsVis
 
 export default function AppHeader() {
   const [profileDropdownVisible, setProfileDropdownVisible] = useState(false);
+  const location = usePathname()
 
   return (
     <div className='appHeader_container'>
       <div className='appHeader_leftSide_container'>
-        <Link href={'/app'}>
-          Inicio
+        <Link href={'/app'} className='linkLogoContainer'>
+          <div style={{ width: 60, height: 60, position: 'relative' }}>
+            <Image src={Logo} alt={'Logo'} fill />
+          </div>
+          <div className={`appHeader_link${location === '/app' ? '_active' : ''}`}>
+            Inicio
+          </div>
         </Link>
 
-        <Link href={'/app/books'}>
+        <Link href={'/app/books'} className={`appHeader_link${location === '/app/books' ? '_active' : ''}`}>
           Buscar Libro
         </Link>
 
-        <Link href={'/app/books/lists'}>
+        <Link href={'/app/books/lists'} className={`appHeader_link${location === '/app/books/lists' ? '_active' : ''}`}>
           Mis Listas
         </Link>
       </div>

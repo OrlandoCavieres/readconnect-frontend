@@ -65,3 +65,23 @@
     box-shadow: 0 1px 3px 0 rgba(get-theme-key('text'), 0.3);
   }
 }
+
+.linkLogoContainer {
+  @include flex($align: center);
+  gap: 5px;
+}
+
+.appHeader_link {
+  @extend .h4_r_text;
+  transition: 0.3s;
+
+  @include give-theme() {
+    &:hover {
+      color: get-theme-key('secondary')
+    }
+  }
+}
+
+.appHeader_link_active {
+  @extend .h4_b_secondary;
+}

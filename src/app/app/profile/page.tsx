@@ -80,7 +80,7 @@ function NameDisplay() {
 export default function Profile() {
   return (
     <main className='profileContainer'>
-      <h3 className='h3_b_secondary'>Mis Datos</h3>
+      <h3 className='h3_b_secondary' style={{ paddingLeft: 20 }}>Mis Datos</h3>
       <NameDisplay />
     </main>
   )
